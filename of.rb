@@ -21,7 +21,7 @@ class OvFile
     end
 
     def overwrite_one_file(file_path, log_file)
-      `chmod u+w #{file_path}`
+      File.chmod(0o644, file_path) rescue nil
       20.times do
         file = File.new(file_path, 'w')
         file.puts(rand_str)
@@ -33,7 +33,7 @@ class OvFile
     end
 
     def rand_str
-      (0..63).inject('') { |result, x| result += rand(256).to_s }
+      Array.new(64) { rand(256).chr }.join
     end
   end
 end
