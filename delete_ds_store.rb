@@ -1,17 +1,9 @@
-class DeleteDsStore
-  class << self
-    def traverse(directory_path, &block)
-      Dir.foreach(directory_path) do |filename|
-        file_path = File.join(directory_path, filename)
-        if File.file?(file_path)
-          yield file_path
-        elsif File.directory?(file_path)
-          puts("\n\n***** Dir #{file_path}")
-          traverse(file_path, &block) unless (filename =~ /^\.{1,2}$/)
-        end
-      end
-    end
+require_relative './traverser'
 
+class DeleteDsStore
+  extend Traverser
+
+  class << self
     def delete_files(directory_path)
       log_file = File.new('error_log.txt', 'w')
       traverse(directory_path) { |file_path| delete_one_file(file_path, log_file)}
@@ -26,10 +18,6 @@ class DeleteDsStore
       File.delete(file_path)
     rescue => error
       log_file.puts("#{error}: #{file_path}")
-    end
-
-    def rand_str
-      Array.new(64) { rand(256).chr }.join
     end
   end
 end

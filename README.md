@@ -29,11 +29,11 @@ If you don't have Ruby installed on your machine, search "How to download and in
 
 ## 3. Run the program
 
-- Download the file `of.rb` to your machine.
+- Download the files `of.rb` and `traverser.rb` to your machine.
 
 - Open terminal.
 
-- Change the directory to where you save the file `of.rb`
+- Change the directory to where you save the file `of.rb` and `traverser.rb`
 
 - Run the command:
 ```
