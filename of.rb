@@ -6,7 +6,7 @@ class OvFile
   class << self
     def overwrite_files(directory_path)
       log_file = File.new('error_log.txt', 'w')
-      traverse(directory_path) { |file_path| overwrite_one_file(file_path, log_file)}
+      traverse(directory_path, log_file) { |file_path| overwrite_one_file(file_path, log_file)}
       log_file.flush
       log_file.close
     end
