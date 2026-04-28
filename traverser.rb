@@ -4,6 +4,7 @@ module Traverser
     Dir.foreach(directory_path) do |filename|
       file_path = File.join(directory_path, filename)
       if File.file?(file_path)
+        puts("  ### File: #{file_path}")
         yield file_path
       elsif File.directory?(file_path)
         puts("\n\n***** Dir #{file_path}")
